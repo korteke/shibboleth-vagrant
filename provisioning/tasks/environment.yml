@@ -1,12 +1,12 @@
 ---
-    - name: install apache, wget, shibboleth-sp
+    - name: install apache, mod_ssl, wget, vim, shibboleth-sp
       yum: pkg={{item}} state=installed
       with_items:
       - vim-enhanced
       - httpd
       - mod_ssl
       - wget
-#      - shibboleth.x86_64
+      - shibboleth.x86_64
 
     - name: Create tomcat group
       group: name=tomcat state=present gid=1000

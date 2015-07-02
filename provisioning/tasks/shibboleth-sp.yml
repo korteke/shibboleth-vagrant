@@ -1,5 +1,5 @@
 ---
-#    - name: Copy Shibboleth SP configurations
-#      copy: src={{ item }} dest="/etc/shibboleth"
-#      with_fileglob:
-#        - ../../provisioning/files/shibboleth-sp/*
+    - name: Copy Shibboleth SP configurations
+      copy: src={{ item }} dest="/etc/shibboleth"
+      with_fileglob:
+        - ../../provisioning/files/shibboleth-sp/*
