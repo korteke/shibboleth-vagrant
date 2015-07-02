@@ -1,0 +1,17 @@
+---
+    - name: Create tomcat group
+      group: name=tomcat state=present gid=1000
+
+    - name: Create tomcat user
+      user: name=tomcat comment="tomcat" uid=1000 group=tomcat state=present
+
+    - name: enable shibboleth sp yum repository
+      copy: src=../../provisioning/files/yum/shibboleth.repo
+        dest=/etc/yum.repos.d/
+        owner=root group=root mode=0644
+
+    - name: add shibboleth repo key
+      rpm_key: state=present key=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/repodata/repomd.xml.key
+    
+    - name: create download directory
+      file: path=/opt/download state=directory

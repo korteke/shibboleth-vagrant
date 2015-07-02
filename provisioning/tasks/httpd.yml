@@ -1,0 +1,6 @@
+---
+    - name: Tomcat AJP configurtion    
+      template: src=../../provisioning/templates/idp.conf.j2 dest=/etc/httpd/conf.d/idp.conf
+
+    - name: Delete default SSL configurations
+      file: path=/etc/httpd/conf.d/ssl.conf state=absent

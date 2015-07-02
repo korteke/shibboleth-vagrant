@@ -1,0 +1,68 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - ../../provisioning/vars/variables.yml
+
+  tasks:
+    - include: ../../provisioning/tasks/environment.yml
+
+    - name: install apache, wget, shibboleth-sp
+      yum: pkg={{item}} state=installed
+      with_items:
+      - vim-enhanced
+      - httpd
+      - mod_ssl
+      - wget
+      - shibboleth.x86_64
+
+    - name: download java
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz -O /opt/download/jdk-8u45-linux-x64.tar.gz'
+
+    - name: Download JCE
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip -O /opt/download/jce_policy-8.zip' 
+
+    - name: download tomcat
+      get_url: url=http://mirror.netinch.com/pub/apache/tomcat/tomcat-7/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz 
+    
+    - name: download shibboleth idp
+      get_url: url=http://shibboleth.net/downloads/identity-provider/latest/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
+
+    - name: extract tomcat
+      unarchive: src=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/ copy=no
+    
+    - name: extract java
+      unarchive: src=/opt/download/jdk-8u45-linux-x64.tar.gz dest=/opt/ copy=no
+    
+    - name: extract jce
+      command: 'unzip -oj /opt/download/jce_policy-8.zip -d /opt/jdk1.8.0_45/jre/lib/security/'
+
+    - name: extract shibboleth
+      unarchive: src=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/ copy=no
+
+    # Include other playbooks
+
+    - include: ../../provisioning/tasks/shibboleth-idp.yml
+    - include: ../../provisioning/tasks/shibboleth-sp.yml
+    - include: ../../provisioning/tasks/httpd.yml
+    - include: ../../provisioning/tasks/tomcat.yml
+
+    # Post processing
+    
+    - name: Chowning dirs shib
+      command: 'chown -R tomcat:tomcat /opt/shibboleth-idp'
+
+    - name: Chowning dirs java
+      command: 'chown -R tomcat:tomcat /opt/jdk1.8.0_45'
+
+    - name: Chowning dirs tomcat
+      command: 'chown -R tomcat:tomcat /opt/apache-tomcat-7.0.62'
+
+    - name: Enable service httpd
+      service: name=httpd enabled=yes state=started
+
+    - name: Enable service tomcat7
+      shell: chkconfig --add tomcat7
+
+    - name: Start tomcat
+      service: name=tomcat7 state=started

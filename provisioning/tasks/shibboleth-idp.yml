@@ -1,0 +1,34 @@
+---
+    - name: copying shibboleth idp install files
+      copy: src=../../provisioning/files/shibboleth-idp/idp.properties
+        dest="/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/"
+        owner=root group=root mode=0644
+
+    - name: Copy silent installation file
+      template: src=../../provisioning/templates/idp.silent.properties.j2 dest=/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/idp.silent.properties 
+
+    - name: Add Shibboleth silent install option
+      lineinfile:
+        dest="/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/build.xml"
+        line="<property name=\"idp.property.file\" value=\"${basedir}/bin/idp.silent.properties\"/>"
+        regexp="^<property name=\"idp.property.file\" value=\"\$\{basedir\}\/bin\/idp.silent.properties\"\/>"
+        state=present
+        insertafter="^.*<taskdef resource.*"
+
+    - name: Install Shibboleth IdP
+      shell: "/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/install.sh"
+      environment:
+        JAVA_HOME: /opt/jdk1.8.0_45/
+    
+    - name: Copy Shibboleth IdP war to tomcats webapps
+      command: "cp -f /opt/shibboleth-idp/war/idp.war /opt/apache-tomcat-7.0.62/webapps"
+
+    - name: Copy certificates
+      copy: src={{ item }} dest="/opt/shibboleth-idp/credentials/"
+      with_fileglob:
+        - ../../provisioning/files/shibboleth-idp/credentials/*
+
+    - name: Copy metadatas
+      copy: src={{ item }} dest="/opt/shibboleth-idp/metadata/"
+      with_fileglob:
+        - ../../provisioning/files/shibboleth-idp/metadata/* 

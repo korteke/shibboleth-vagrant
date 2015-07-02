@@ -1,0 +1,6 @@
+---
+  - name: Copy Tomcats server.xml
+    template: src=../../provisioning/templates/server.xml.j2 dest=/opt/apache-tomcat-7.0.62/conf/server.xml 
+  
+  - name: Tomcat Init script
+    template: src=../../provisioning/templates/tomcat7.j2 dest=/etc/init.d/tomcat7 owner=root group=root mode=0755
