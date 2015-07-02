@@ -28,6 +28,14 @@ Before you can run this box you need to install Vagrant and Ansible to your host
 ### Vagrant
 * http://www.vagrantup.com/downloads
 
+# Configuration
+execute "sh install_local.sh" if you want to download packages to your host machine --> easier to develop, because you don't have to download the packages every time you reload the Vagrant box
+execute "sh install_web.sh" to revert to normal situation --> ansible tries to download packages from internet
+
+You need to add Vagrant box ip address to hosts-file (linux /etc/hosts, windows c:\windows\system32\drivers\etc\hosts)
+192.168.0.100 varant.local
 
 # Usage
+Open browser and navigate to the address "https://vagrant.local/secure/"
+
 WIP

@@ -1,9 +1,21 @@
 ---
+    - name: install apache, wget, shibboleth-sp
+      yum: pkg={{item}} state=installed
+      with_items:
+      - vim-enhanced
+      - httpd
+      - mod_ssl
+      - wget
+#      - shibboleth.x86_64
+
     - name: Create tomcat group
       group: name=tomcat state=present gid=1000
 
     - name: Create tomcat user
       user: name=tomcat comment="tomcat" uid=1000 group=tomcat state=present
+    
+    - name: create download directory
+      file: path=/opt/download state=directory
 
     - name: enable shibboleth sp yum repository
       copy: src=../../provisioning/files/yum/shibboleth.repo
@@ -12,6 +24,25 @@
 
     - name: add shibboleth repo key
       rpm_key: state=present key=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/repodata/repomd.xml.key
-    
-    - name: create download directory
-      file: path=/opt/download state=directory
+
+    - name: download java
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz -O /opt/download/jdk-8u45-linux-x64.tar.gz'
+      when: local_install == 0
+
+    - name: Download JCE
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip -O /opt/download/jce_policy-8.zip'
+      when: local_install == 0
+
+    - name: download tomcat
+      get_url: url=http://mirror.netinch.com/pub/apache/tomcat/tomcat-7/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz
+      when: local_install == 0
+
+    - name: download shibboleth idp
+      get_url: url=http://shibboleth.net/downloads/identity-provider/latest/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
+      when: local_install == 0
+
+    - name: Copy local downloads
+      copy: src={{ item }} dest="/opt/download"
+      with_fileglob:
+        - ../../downloads/*
+      when: local_install == 1

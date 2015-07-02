@@ -1,4 +1,7 @@
 ---
+    - name: extract shibboleth
+      unarchive: src=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/ copy=no
+
     - name: copying shibboleth idp install files
       copy: src=../../provisioning/files/shibboleth-idp/idp.properties
         dest="/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/"
