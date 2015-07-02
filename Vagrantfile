@@ -10,8 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.network "private_network", ip: "192.168.0.100"
 
-#    config.vm.provision :shell, :path => "provisioning/init/init.sh"
-    
     config.vm.provision :ansible do |ansible|
       ansible.playbook = "provisioning/init/default-playbook.yml"
     end
