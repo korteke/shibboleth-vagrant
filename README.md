@@ -1,6 +1,8 @@
 # Shibboleth-vagrant
 Vagrant box - Shibboleth IdP3 + SP 2.x testing environment
 
+Shibboleth SP / IdP are almost on factory settings. So IdP wont release any attributes to the SP.
+
 ## Prereqs
 * Virtualbox (or other vagrant compliant virtualization "engine")
 
