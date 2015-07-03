@@ -35,10 +35,21 @@ Before you can run this box you need to install Vagrant and Ansible to your host
 
 * execute "sh install_web.sh" to revert to normal situation --> ansible tries to download packages from internet
 
-You need to add Vagrant box ip address to hosts-file (linux /etc/hosts, windows c:\windows\system32\drivers\etc\hosts)
+You need to add Vagrant box ip address to the hosts-file (linux /etc/hosts, windows c:\windows\system32\drivers\etc\hosts)
+
+```
 192.168.0.120 vagrant.local
+```
 
 # Usage
+
+* Execute "vagrant up" and wait that the ansible run has completed, expected outcome:
+
+```
+  PLAY RECAP ********************************************************************
+  default                    : ok=43   changed=42   unreachable=0    failed=0
+```
+
 Open browser and navigate to the address "https://vagrant.local/secure/" this URL is secured with Shibboleth SP, so that will redirect you to the Shibboleth IdP where you need to authenticate.
 
 You can use following users to test this setup:
