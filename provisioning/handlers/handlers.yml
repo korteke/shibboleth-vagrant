@@ -1,0 +1,9 @@
+---
+    - name: restart httpd
+      service: name=httpd state=restarted
+
+    - name: restart tomcat
+      service: name=tomcat7 state=restarted
+
+    - name: restart openldap
+      service: name=slapd state=restarted

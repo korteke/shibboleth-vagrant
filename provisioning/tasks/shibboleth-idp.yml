@@ -34,4 +34,11 @@
     - name: Copy metadatas
       copy: src={{ item }} dest="/opt/shibboleth-idp/metadata/"
       with_fileglob:
-        - ../../provisioning/files/shibboleth-idp/metadata/* 
+        - ../../provisioning/files/shibboleth-idp/metadata/*
+
+    - name: Copy metadata-providers.xml to idp
+      template: src=../../provisioning/files/shibboleth-idp/metadata-providers.xml dest=/opt/shibboleth-idp/conf/
+
+    - name: Copy ldap configuration
+      template: src=../../provisioning/files/shibboleth-idp/ldap.properties dest=/opt/shibboleth-idp/conf/
+      notify: restart tomcat

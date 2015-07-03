@@ -3,3 +3,6 @@
       copy: src={{ item }} dest="/etc/shibboleth"
       with_fileglob:
         - ../../provisioning/files/shibboleth-sp/*
+
+    - name: Enable service shibd
+      service: name=shibd enabled=yes state=started

@@ -1,0 +1,31 @@
+---
+    - name: install openldap
+      yum: pkg={{item}} state=installed
+      with_items:
+      - openldap
+      - openldap-clients
+      - openldap-servers
+      - phpldapadmin
+
+    - name: Enable service slapd
+      service: name=slapd enabled=yes state=started
+
+    - name: Copy OpenLDAP ldif
+      copy: src={{ item }} dest="/opt/download"
+      with_fileglob:
+        - ../../provisioning/files/openldap/*
+      notify: restart openldap
+
+    - name: Configure OpenLDAP
+      command: "{{ item }}"
+      with_items:
+      - ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f /opt/download/config.ldif
+      - ldapadd -x -w Password1 -D cn=manager,dc=vagrant,dc=local -H ldapi:/// -f /opt/download/base.ldif
+      notify: restart openldap
+
+    - name: Copy phpLdapAdmin config
+      template: src=../../provisioning/templates/phpldapadmin.conf.j2 dest=/etc/httpd/conf.d/phpldapadmin.conf
+    
+    - name: Modify phpLdapAdmin configuration
+      template: src=../../provisioning/templates/phpldapadmin.config.php.j2 dest=/etc/phpldapadmin/config.php
+      notify: restart httpd

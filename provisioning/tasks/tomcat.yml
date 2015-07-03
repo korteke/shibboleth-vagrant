@@ -13,3 +13,6 @@
   
   - name: Tomcat Init script
     template: src=../../provisioning/templates/tomcat7.j2 dest=/etc/init.d/tomcat7 owner=root group=root mode=0755
+
+  - name: Enable service tomcat7
+    shell: chkconfig --add tomcat7

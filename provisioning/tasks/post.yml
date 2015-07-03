@@ -7,12 +7,3 @@
 
     - name: Chowning dirs tomcat
       command: 'chown -R tomcat:tomcat /opt/apache-tomcat-7.0.62'
-
-    - name: Enable service httpd
-      service: name=httpd enabled=yes state=started
-
-    - name: Enable service tomcat7
-      shell: chkconfig --add tomcat7
-
-    - name: Start tomcat
-      service: name=tomcat7 state=started

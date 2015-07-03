@@ -10,9 +10,9 @@
                          REMOTE_USER="eppn persistent-id targeted-id">
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-                  checkAddress="false" handlerSSL="false" cookieProps="http">
+                  checkAddress="false" handlerSSL="true" cookieProps="https">
 
-	  <SSO entityID="https://idp.vagrant.local/idp/shibboleth">
+  	    <SSO entityID="https://vagrant.local/idp/shibboleth">
               SAML2
             </SSO>
 

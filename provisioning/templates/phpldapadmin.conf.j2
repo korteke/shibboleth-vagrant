@@ -1,0 +1,11 @@
+#
+#  Web-based tool for managing LDAP servers
+#
+
+Alias /phpldapadmin /usr/share/phpldapadmin/htdocs
+Alias /ldapadmin /usr/share/phpldapadmin/htdocs
+
+<Directory /usr/share/phpldapadmin/htdocs>
+  Order Deny,Allow
+</Directory>
+
