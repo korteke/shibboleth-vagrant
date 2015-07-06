@@ -29,6 +29,9 @@ Before you can run this box you need to install Vagrant and Ansible to your host
 #### Linux
 * http://docs.ansible.com/intro_installation.html
 
+#### Windows (Not tested) w\ cygwin
+* https://servercheck.in/blog/running-ansible-within-windows
+
 ### Vagrant
 * http://www.vagrantup.com/downloads
 
