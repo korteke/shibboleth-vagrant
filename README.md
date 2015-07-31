@@ -1,6 +1,8 @@
 # Shibboleth-vagrant
 Vagrant box - Shibboleth IdP3 + SP 2.x testing environment
 
+Shibboleth SP / IdP are almost on factory settings. So IdP wont release any attributes to the SP.
+
 ## Prereqs
 * Virtualbox (or other vagrant compliant virtualization "engine")
 
@@ -26,6 +28,12 @@ Before you can run this box you need to install Vagrant and Ansible to your host
 
 #### Linux
 * http://docs.ansible.com/intro_installation.html
+
+#### Windows (Not tested) w\ cygwin
+* https://servercheck.in/blog/running-ansible-within-windows
+EDIT:
+Tested with these instructions + (https://github.com/geerlingguy/JJG-Ansible-Windows/blob/master/windows.sh), but nogo.
+I will investigate this later.
 
 ### Vagrant
 * http://www.vagrantup.com/downloads
