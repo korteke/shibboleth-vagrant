@@ -6,4 +6,4 @@
       command: 'chown -R tomcat:tomcat /opt/jdk1.8.0_45'
 
     - name: Chowning dirs tomcat
-      command: 'chown -R tomcat:tomcat /opt/apache-tomcat-7.0.62'
+      command: 'chown -R tomcat:tomcat /opt/apache-tomcat-{{ tomcat_version }}'

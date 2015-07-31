@@ -9,10 +9,10 @@
     command: 'unzip -oj /opt/download/jce_policy-8.zip -d /opt/jdk1.8.0_45/jre/lib/security/'
 
   - name: Copy Tomcats server.xml
-    template: src=../../provisioning/templates/server.xml.j2 dest=/opt/apache-tomcat-7.0.62/conf/server.xml 
+    template: src=../../provisioning/templates/server.xml.j2 dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/server.xml 
   
   - name: Tomcat Init script
-    template: src=../../provisioning/templates/tomcat7.j2 dest=/etc/init.d/tomcat7 owner=root group=root mode=0755
+    template: src=../../provisioning/templates/tomcat.j2 dest=/etc/init.d/tomcat owner=root group=root mode=0755
 
-  - name: Enable service tomcat7
-    shell: chkconfig --add tomcat7
+  - name: Enable service tomcat
+    shell: chkconfig --add tomcat

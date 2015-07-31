@@ -3,7 +3,7 @@
       service: name=httpd state=restarted
 
     - name: restart tomcat
-      service: name=tomcat7 state=restarted
+      service: name=tomcat state=restarted
 
     - name: restart openldap
       service: name=slapd state=restarted
