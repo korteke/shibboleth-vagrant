@@ -21,10 +21,10 @@ export JAVA_HOME=/opt/jdk1.8.0_45/
 export PATH=$JAVA_HOME/bin:$PATH
  
 #CATALINA_HOME is the location of the bin files of Tomcat  
-export CATALINA_HOME=/opt/apache-tomcat-{{ tomcat_version }}/
+export CATALINA_HOME=/opt/apache-tomcat-{{ tomcat_version.stdout }}/
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
-export CATALINA_BASE=/opt/apache-tomcat-{{ tomcat_version }}/
+export CATALINA_BASE=/opt/apache-tomcat-{{ tomcat_version.stdout }}/
  
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER=tomcat

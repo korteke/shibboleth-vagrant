@@ -17,6 +17,12 @@
       - wget
       - shibboleth.x86_64
 
+    - name: Tomcat version
+      shell: 'curl --silent "https://tomcat.apache.org/download-80.cgi" | grep -oP "<a href=\"#\K([0-9].[0-9].[0-9]+)"'
+      register: tomcat_version
+
+    - debug: var=tomcat_version
+
     - name: Create tomcat group
       group: name=tomcat state=present gid=1000
 
@@ -38,7 +44,7 @@
       when: local_install == 0
 
     - name: download tomcat
-      get_url: url=http://mirror.netinch.com/pub/apache/tomcat/tomcat-8/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz
+      get_url: url=http://mirror.netinch.com/pub/apache/tomcat/tomcat-8/v{{ tomcat_version.stdout }}/bin/apache-tomcat-{{ tomcat_version.stdout }}.tar.gz dest=/opt/download/apache-tomcat-{{ tomcat_version.stdout }}.tar.gz
       when: local_install == 0
 
     - name: download shibboleth idp

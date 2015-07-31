@@ -1,6 +1,6 @@
 ---
   - name: extract tomcat
-    unarchive: src=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/ copy=no
+    unarchive: src=/opt/download/apache-tomcat-{{ tomcat_version.stdout }}.tar.gz dest=/opt/ copy=no
 
   - name: extract java
     unarchive: src=/opt/download/jdk-8u45-linux-x64.tar.gz dest=/opt/ copy=no
@@ -9,7 +9,7 @@
     command: 'unzip -oj /opt/download/jce_policy-8.zip -d /opt/jdk1.8.0_45/jre/lib/security/'
 
   - name: Copy Tomcats server.xml
-    template: src=../../provisioning/templates/server.xml.j2 dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/server.xml 
+    template: src=../../provisioning/templates/server.xml.j2 dest=/opt/apache-tomcat-{{ tomcat_version.stdout }}/conf/server.xml 
   
   - name: Tomcat Init script
     template: src=../../provisioning/templates/tomcat.j2 dest=/etc/init.d/tomcat owner=root group=root mode=0755
