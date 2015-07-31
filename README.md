@@ -10,7 +10,7 @@ Shibboleth SP / IdP are almost on factory settings. So IdP wont release any attr
 * CentOS 6.4
 * httpd 2.2
 * Oracle Java 8
-* Tomcat 7
+* Tomcat 8
 * Shibboleth Service Provider (SP) 2.5.x
 * Shibboleth Identity Provider (IdP) 3.1.2
 * OpenLDAP
@@ -75,5 +75,5 @@ You can use phpLdapAdmin application to manage users that are allowed to authent
 * Shibboleth SP - /etc/shibboleth
 * Apache httpd - /etc/httpd
 * Java - /opt/jdk1.8.0_45/
-* Tomcat - /opt/apache-tomcat-7.0.62
+* Tomcat - /opt/apache-tomcat-8.0.24
 * OpenLDAP - /etc/openldap
