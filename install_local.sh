@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOMCAT_VERSION="7.0.62"
+TOMCAT_VERSION="8.0.26"
 IDP_VERSION="3.1.2"
 
 if [ ! -d downloads ];
@@ -12,7 +12,7 @@ cd downloads
 
 if [ ! -f apache-tomcat-$TOMCAT_VERSION.tar.gz ];
   then
-    curl -O http://mirror.netinch.com/pub/apache/tomcat/tomcat-7/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
+    curl -O http://archive.apache.org/dist/tomcat/tomcat-8/v$TOMCAT_VERSION/src/apache-tomcat-$TOMCAT_VERSION-src.tar.gz
 fi
 
 if [ ! -f jdk-8u45-linux-x64.tar.gz ];

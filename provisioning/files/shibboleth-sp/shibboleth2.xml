@@ -7,7 +7,7 @@
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
     <ApplicationDefaults entityID="https://sp.vagrant.local/shibboleth"
-                         REMOTE_USER="eppn persistent-id targeted-id">
+                         REMOTE_USER="uid">
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https">

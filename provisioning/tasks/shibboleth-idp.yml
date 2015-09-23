@@ -39,6 +39,12 @@
     - name: Copy metadata-providers.xml to idp
       template: src=../../provisioning/files/shibboleth-idp/metadata-providers.xml dest=/opt/shibboleth-idp/conf/
 
+    - name: Copy attribute-resolver.xml to idp
+      template: src=../../provisioning/files/shibboleth-idp/attribute-resolver.xml dest=/opt/shibboleth-idp/conf/
+
+    - name: Copy attribute-filter.xml to idp
+      template: src=../../provisioning/files/shibboleth-idp/attribute-filter.xml dest=/opt/shibboleth-idp/conf/
+
     - name: Copy ldap configuration
       template: src=../../provisioning/files/shibboleth-idp/ldap.properties dest=/opt/shibboleth-idp/conf/
       notify: restart tomcat
