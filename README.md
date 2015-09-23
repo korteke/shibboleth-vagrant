@@ -1,7 +1,7 @@
 # Shibboleth-vagrant
 Vagrant box - Shibboleth IdP3 + SP 2.x testing environment
 
-Shibboleth SP / IdP are almost on factory settings. So IdP wont release any attributes to the SP.
+Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any attributes to the SP.~~ IdP will release couple of attributes to the Shibboleth SP (uid, mail, sn, cn, givenName)
 
 ## Prereqs
 * Virtualbox (or other vagrant compliant virtualization "engine")
@@ -55,8 +55,8 @@ You need to add Vagrant box ip address to the hosts-file (linux /etc/hosts, wind
 * Execute "vagrant up" and wait that the ansible run has completed, expected outcome:
 
 ```
-  PLAY RECAP ********************************************************************
-  default                    : ok=43   changed=42   unreachable=0    failed=0
+PLAY RECAP ********************************************************************
+default                    : ok=50   changed=48   unreachable=0    failed=0
 ```
 
 Open browser and navigate to the address "https://vagrant.local/secure/" this URL is secured with Shibboleth SP, so that will redirect you to the Shibboleth IdP where you need to authenticate.
