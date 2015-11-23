@@ -1,5 +1,21 @@
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://sp.vagrant.local/shibboleth">
+<md:EntityDescriptor xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" entityID="https://sp.vagrant.local/shibboleth">
   <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+      <md:Extensions>
+        <mdui:UIInfo>
+          <mdui:DisplayName xml:lang="fi">DisplayName-TestiFI</mdui:DisplayName>
+          <mdui:DisplayName xml:lang="sv">DisplayName-TestiSV</mdui:DisplayName>
+          <mdui:DisplayName xml:lang="en">DisplayName-TestiEN</mdui:DisplayName>
+          <mdui:Description xml:lang="fi">Description-TestiFI</mdui:Description>
+          <mdui:Description xml:lang="sv">Description-TestiSV</mdui:Description>
+          <mdui:Description xml:lang="en">Description-TestiEN</mdui:Description>
+          <mdui:PrivacyStatementURL xml:lang="fi">https://sertti.testi.com/Privacy</mdui:PrivacyStatementURL>
+          <mdui:PrivacyStatementURL xml:lang="sv">https://sertti.testi.com/PrivacySV</mdui:PrivacyStatementURL>
+          <mdui:PrivacyStatementURL xml:lang="en">https://sertti.testi.com/PrivacyEN</mdui:PrivacyStatementURL>
+          <mdui:InformationURL xml:lang="fi"> https://vagrant.local/fi/information.html </mdui:InformationURL>
+          <mdui:InformationURL xml:lang="sv"> https://vagrant.local/sv/information.html </mdui:InformationURL>
+          <mdui:InformationURL xml:lang="en"> https://vagrant.local/en/information.html </mdui:InformationURL>
+        </mdui:UIInfo>
+      </md:Extensions>
     <md:KeyDescriptor>
       <ds:KeyInfo>
         <ds:X509Data>
@@ -26,8 +42,6 @@ S1GfL8Ivj/3ijBhZSbpE3Kb2y3YEqIsFMHX/OkFEFn++yhteoQ==
       </ds:KeyInfo>
     </md:KeyDescriptor>
     <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://vagrant.local/Shibboleth.sso/SAML2/POST" index="1"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://vagrant.local/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://vagrant.local/Shibboleth.sso/SAML2/ECP" index="3"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://vagrant.local/Shibboleth.sso/SAML/POST" index="4"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://vagrant.local/Shibboleth.sso/SLO/Redirect"/>
   </md:SPSSODescriptor>
 </md:EntityDescriptor>

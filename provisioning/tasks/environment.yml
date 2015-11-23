@@ -48,7 +48,7 @@
       when: local_install == 0
 
     - name: download shibboleth idp
-      get_url: url=http://shibboleth.net/downloads/identity-provider/latest/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
+      get_url: url=http://shibboleth.net/downloads/identity-provider/{{ shib_idp_version }}/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
       when: local_install == 0
 
     - name: Copy local downloads

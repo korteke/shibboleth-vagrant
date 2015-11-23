@@ -10,6 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.network "private_network", ip: "192.168.0.120"
 
+#    config.vm.network "forwarded_port", guest: 22, host: 2223
+
     config.vm.hostname = "vagrant.local"
 
     config.vm.provision :ansible do |ansible|
