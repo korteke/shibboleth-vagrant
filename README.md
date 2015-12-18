@@ -10,9 +10,9 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 * CentOS 6.4
 * httpd 2.2
 * Oracle Java 8
-* Tomcat 8
+* Tomcat 8.0.30
 * Shibboleth Service Provider (SP) 2.5.x
-* Shibboleth Identity Provider (IdP) 3.1.2
+* Shibboleth Identity Provider (IdP) 3.2.0
 * OpenLDAP
 * phpLdapAdmin
 
@@ -43,9 +43,6 @@ I will investigate this later
 * http://www.vagrantup.com/downloads
 
 # Configuration
-* execute "sh install_local.sh" if you want to download packages to your host machine --> easier to develop, because you don't have to download the packages every time you reload the Vagrant box
-
-* execute "sh install_web.sh" to revert to normal situation --> ansible tries to download packages from internet
 
 You need to add Vagrant box ip address to the hosts-file (linux /etc/hosts, windows c:\windows\system32\drivers\etc\hosts)
 
@@ -85,5 +82,5 @@ You can use phpLdapAdmin application to manage users that are allowed to authent
 * Shibboleth SP - /etc/shibboleth
 * Apache httpd - /etc/httpd
 * Java - /opt/jdk1.8.0_45/
-* Tomcat - /opt/apache-tomcat-8.0.24
+* Tomcat - /opt/apache-tomcat-8.0.30
 * OpenLDAP - /etc/openldap
