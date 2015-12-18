@@ -1,7 +1,0 @@
----
-local_install: 1
-shib_idp_version: 3.1.2
-shib_home: /opt/shibboleth-idp/
-tomcat_version: 7.0.62
-webapps_location: /opt/
-java_version: 1.8.0_45
