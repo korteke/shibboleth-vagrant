@@ -1,0 +1,21 @@
+---
+
+    - name: Enable shibboleth sp yum repository
+      copy: src=yum/shibboleth.repo
+        dest=/etc/yum.repos.d/
+        owner=root group=root mode=0644
+
+    - name: Add shibboleth repo key
+      rpm_key: state=present key=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/repodata/repomd.xml.key
+
+    - name: Install Shibboleth-sp
+      yum: pkg=shibboleth.x86_64 state=installed
+      
+
+    - name: Copy Shibboleth-SP configurations
+      copy: src={{ item }} dest="/etc/shibboleth"
+      with_fileglob:
+        - /*
+
+    - name: Enable service shibd
+      service: name=shibd enabled=yes state=started

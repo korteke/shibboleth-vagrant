@@ -1,0 +1,60 @@
+---
+  - name: Download maven
+    get_url: url=http://archive.apache.org/dist/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz dest=/opt/download/apache-maven-3.0.5-bin.tar.gz
+
+  - name: Extract maven
+    unarchive: src=/opt/download/apache-maven-3.0.5-bin.tar.gz dest=/opt/ copy=no 
+
+  - name: Create directory for Shibboleth-IdP3-TOTP-Auth
+    file: path="/opt/totp-authenticator" state=directory mode=0755 owner=root group=root
+
+  - name: Fetch korteke/Shibboleth-IdP3-TOTP-Auth from GitHub
+    git: repo=https://github.com/korteke/Shibboleth-IdP3-TOTP-Auth.git dest=/opt/totp-authenticator
+
+  - name: Compile Totp-authenticator
+    shell: "/opt/apache-maven-3.0.5/bin/mvn clean package"
+    args:
+      chdir: /opt/totp-authenticator
+    environment:
+      JAVA_HOME: /opt/java
+
+  - name: Copy Totp artifacts to Shibboleth-IdP
+    shell: "cp -R /opt/totp-authenticator/totpauth-impl/target/totpauth-impl-{{ totp_version }}-bin/totpauth-impl-{{ totp_version }}/* /opt/shibboleth-idp/"
+
+  - name: Enable Totp
+    lineinfile: dest=/opt/shibboleth-idp/conf/idp.properties regexp='^idp\.authn\.flows\= Password' line='idp.authn.flows= Password|Totp' 
+
+  - name: Modify general-authn.xml file
+    copy: src=general-authn.xml dest=/opt/shibboleth-idp/conf/authn/general-authn.xml
+  
+  - name: Modify totp-authn-beans.xml
+    template: src=totp-authn-beans.xml.j2 dest=/opt/shibboleth-idp/conf/authn/totp-authn-beans.xml
+
+  - name: Copy silent installation file
+    template: src=idp.silent.properties.j2 dest=/opt/shibboleth-idp/bin/idp.silent.properties
+
+  - name: Add Shibboleth silent install option
+    lineinfile:
+      dest="/opt/shibboleth-idp/bin/build.xml"
+      line="<property name=\"idp.noprompt\" value=\"true\"/>"
+      regexp="^<property name=\"idp\.noprompt\" value=\"true\"\/>"
+      state=present
+      insertafter="^.*<taskdef resource.*"
+
+  - name: Rebuild idp.war
+    shell: ./build.sh
+    args:
+      chdir: /opt/shibboleth-idp/bin/
+    environment:
+      JAVA_HOME: /opt/java
+    notify: stop tomcat
+
+  - name: Delete old idp.war
+    command: rm -rf /opt/apache-tomcat-{{ tomcat_version }}/webapps/idp*
+
+  - name: Pause Playbook for 5 sec
+    pause: seconds=5 prompt="Resting for 5 sec"
+
+  - name: Copy Shibboleth IdP war to tomcats webapps
+    command: "cp -f /opt/shibboleth-idp/war/idp.war /opt/apache-tomcat-{{ tomcat_version }}/webapps"
+    notify: start tomcat

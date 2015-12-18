@@ -15,7 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.hostname = "vagrant.local"
 
     config.vm.provision :ansible do |ansible|
-      ansible.playbook = "provisioning/init/default-playbook.yml"
+      ansible.playbook = "site.yml"
+      #ansible.tags = ["environment", "tomcat", "shibboleth-idp", "httpd", "shibboleth-sp", "oepnldap", "totp-authenticator", "posttasks"]
+      ansible.skip_tags = ["environment", "tomcat", "shibboleth-idp", "httpd", "shibboleth-sp", "oepnldap"]
+      #ansible.skip_tags = "totp-authenticator"
+      ansible.verbose = "vvv"
     end
 
     config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]

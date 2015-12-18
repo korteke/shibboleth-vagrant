@@ -1,0 +1,46 @@
+---
+    - name: Download shibboleth idp
+      get_url: url=http://shibboleth.net/downloads/identity-provider/{{ shib_idp_version }}/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
+
+    - name: Extract shibboleth
+      unarchive: src=/opt/download/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest=/opt/ copy=no
+
+    - name: Copying shibboleth idp install files
+      copy: src=idp.properties
+        dest="/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/"
+        owner=root group=root mode=0644
+
+    - name: Copy silent installation file
+      template: src=idp.silent.properties.j2 dest=/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/idp.silent.properties
+
+    - name: Add Shibboleth silent install option
+      lineinfile:
+        dest="/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/build.xml"
+        line="<property name=\"idp.property.file\" value=\"${basedir}/bin/idp.silent.properties\"/>"
+        regexp="^<property name=\"idp.property.file\" value=\"\$\{basedir\}\/bin\/idp.silent.properties\"\/>"
+        state=present
+        insertafter="^.*<taskdef resource.*"
+
+    - name: Install Shibboleth IdP
+      shell: "/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/install.sh"
+      environment:
+        JAVA_HOME: /opt/java
+
+    - name: Copy Shibboleth IdP war to tomcats webapps
+      command: "cp -f /opt/shibboleth-idp/war/idp.war /opt/apache-tomcat-{{ tomcat_version }}/webapps"
+
+    - name: Copy certificates
+      copy: src={{ item }} dest="/opt/shibboleth-idp/credentials/"
+      with_fileglob:
+        - credentials/*
+
+    - name: Copy IdP metadatas
+      copy: src={{ item }} dest="/opt/shibboleth-idp/metadata/"
+      with_fileglob:
+        - metadata/*
+
+    - name: Copy IdP configurations
+      copy: src={{ item }} dest="/opt/shibboleth-idp/conf/"
+      with_fileglob:
+        - conf/*
+      notify: restart tomcat

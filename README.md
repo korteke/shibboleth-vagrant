@@ -16,6 +16,9 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 * OpenLDAP
 * phpLdapAdmin
 
++ Google Authenticator module:  
+https://github.com/korteke/Shibboleth-IdP3-TOTP-Auth  
+
 All programs are provisioned to vagrant box with [Ansible](https://www.google.com)
 
 # Installation
@@ -63,7 +66,10 @@ Open browser and navigate to the address "https://vagrant.local/secure/" this UR
 
 You can use following users to test this setup:
 * johnd / Password1
-* janed / Password1
+* janed / Password1  
+
+Google Authenticator flow can be tested with URL: https://vagrant.local/Shibboleth.sso/totp  
+Google Authenticator seed = G24YUKCHHXRDWCPR  
 
 After authentication you will be redirected back to https://vagrant.local/secure/. There is asimple PHP site which will show your environment variables and http headers.
 

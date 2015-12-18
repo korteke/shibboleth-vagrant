@@ -1,0 +1,9 @@
+---
+    - name: Chowning dirs shib
+      command: 'chown -R tomcat:tomcat /opt/shibboleth-idp'
+
+    - name: Chowning dirs java
+      command: 'chown -R tomcat:tomcat /opt/jdk{{ java_version}}'
+
+    - name: Chowning dirs tomcat
+      command: 'chown -R tomcat:tomcat /opt/apache-tomcat-{{ tomcat_version }}'

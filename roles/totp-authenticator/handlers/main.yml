@@ -1,0 +1,11 @@
+---
+# handlers file for totp-authenticator
+
+    - name: restart tomcat
+      service: name=tomcat state=restarted
+
+    - name: stop tomcat
+      service: name=tomcat state=stopped
+
+    - name: start tomcat
+      service: name=tomcat state=started

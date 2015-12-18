@@ -1,0 +1,52 @@
+dn: dc=vagrant,dc=local
+objectClass: dcObject
+objectClass: organization
+o: vagrant.local
+dc: vagrant
+
+dn: ou=people,dc=vagrant,dc=local
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,dc=vagrant,dc=local
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: uid=johnd,ou=people,dc=vagrant,dc=local
+cn: John Doe
+givenName: John
+sn: Doe
+uid: johnd
+uidNumber: 10000
+gidNumber: 10000
+homeDirectory: /home/johnd
+mail: johnd@vagrant.local
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+userPassword: {SSHA}28hB3IUUBiz8aUmVA8PvFiXz/f7zEl1C
+telexNumber: G24YUKCHHXRDWCPR
+
+dn: uid=janed,ou=people,dc=vagrant,dc=local
+cn: Jane Doe
+givenName: Jane
+sn: Doe
+uid: janed
+uidNumber: 10001
+gidNumber: 10001
+homeDirectory: /home/janed
+mail: janed@vagrant.local
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+userPassword: {SSHA}nSTdo0CYYUS+Hqm29tWFsPHONmLcXJkw

@@ -1,0 +1,14 @@
+<?php
+echo "<h1>Environment variables</h1>";
+   while (list($var,$value) = each ($_SERVER)) {
+      echo "$var => $value <br />";
+   }
+
+echo "<h1>HTTP headers</h1>";
+
+$headers = getallheaders();
+foreach($headers as $key=>$val){
+  echo $key . ': ' . $val . '<br>';
+}
+
+?>

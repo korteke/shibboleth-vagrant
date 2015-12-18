@@ -1,0 +1,29 @@
+LoadModule ssl_module modules/mod_ssl.so
+Listen 443
+
+SSLPassPhraseDialog  builtin
+SSLSessionCache         shmcb:/var/cache/mod_ssl/scache(512000)
+SSLSessionCacheTimeout  300
+SSLMutex default
+SSLRandomSeed startup file:/dev/urandom  256
+SSLRandomSeed connect builtin
+SSLCryptoDevice builtin
+
+<VirtualHost *:443>
+  ServerName vagrant.local
+  ErrorLog /var/log/httpd/ssl_error_log
+  LogLevel warn
+  CustomLog /var/log/httpd/ssl_access.log combined
+
+  SSLEngine on
+  SSLHonorCipherOrder on
+  SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS:!PSK
+  SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+  SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+
+  <Proxy ajp://localhost:8009/idp/*>
+    Allow from all
+  </Proxy>
+    ProxyPass /idp/ ajp://localhost:8009/idp/
+
+</VirtualHost>

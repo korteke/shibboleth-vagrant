@@ -1,0 +1,3 @@
+---
+# tasks file for openldap
+- include: openldap.yml

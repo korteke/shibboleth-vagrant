@@ -1,0 +1,15 @@
+- hosts: all
+  sudo: true
+
+  vars_files:
+   - vars/default.yml
+
+  roles:
+    - { role: environment, tags: ["environment"] }
+    - { role: tomcat, tags: ["tomcat"] }
+    - { role: shibboleth-idp, tags: ["shibboleth-idp"] }
+    - { role: httpd, tags: ["httpd"] }
+    - { role: shibboleth-sp, tags: ["shibboleth-sp"] }
+    - { role: openldap, tags: ["oepnldap"] }
+    - { role: totp-authenticator, tags: ["totp-authenticator"] }
+    - { role: posttasks, tags: ["posttasks"] }

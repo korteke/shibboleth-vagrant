@@ -1,0 +1,13 @@
+---
+    - name: Create Tomcat AJP configuration
+      template: src=idp.conf.j2 dest=/etc/httpd/conf.d/idp.conf
+
+    - name: Create Secure index.php
+      template: src=index.php.j2 dest=/var/www/html/secure/index.php
+
+    - name: Delete default SSL configurations
+      file: path=/etc/httpd/conf.d/ssl.conf state=absent
+      notify: restart httpd
+
+    - name: Enable service httpd
+      service: name=httpd enabled=yes state=started
