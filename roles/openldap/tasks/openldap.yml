@@ -1,5 +1,5 @@
 ---
-    - name: install openldap
+    - name: Install openldap
       yum: pkg={{item}} state=installed
       with_items:
       - openldap
@@ -16,7 +16,7 @@
         - ldif/*
       notify: restart openldap
 
-    - name: Configure OpenLDAP
+    - name: Configure OpenLDAP + add base ldifs
       command: "{{ item }}"
       with_items:
       - ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f /opt/download/config.ldif

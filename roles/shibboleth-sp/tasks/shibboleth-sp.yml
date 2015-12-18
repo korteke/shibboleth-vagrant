@@ -10,12 +10,11 @@
 
     - name: Install Shibboleth-sp
       yum: pkg=shibboleth.x86_64 state=installed
-      
 
-    - name: Copy Shibboleth-SP configurations
+    - name: Copy Shibboleth-SP configuration files
       copy: src={{ item }} dest="/etc/shibboleth"
       with_fileglob:
-        - /*
+        - conf/*
 
     - name: Enable service shibd
       service: name=shibd enabled=yes state=started

@@ -47,7 +47,9 @@
       chdir: /opt/shibboleth-idp/bin/
     environment:
       JAVA_HOME: /opt/java
-    notify: stop tomcat
+
+  - name: Stop Tomcat
+    service: name=tomcat state=stopped
 
   - name: Delete old idp.war
     command: rm -rf /opt/apache-tomcat-{{ tomcat_version }}/webapps/idp*

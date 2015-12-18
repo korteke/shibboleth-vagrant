@@ -1,5 +1,5 @@
 ---
-    - name: install apache, mod_ssl, wget, vim, shibboleth-sp
+    - name: Install apache, mod_ssl, wget, vim
       yum: pkg={{item}} state=installed
       with_items:
       - vim-enhanced
@@ -7,13 +7,13 @@
       - mod_ssl
       - wget
 
-    - name: create download directory
+    - name: Create download directory
       file: path=/opt/download state=directory
 
-    - name: create secure directory
+    - name: Create secure directory
       file: path=/var/www/html/secure state=directory
 
-    - name: download java
+    - name: Download java
       command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz -O /opt/download/jdk-8u45-linux-x64.tar.gz'
 
     - name: Download JCE

@@ -10,6 +10,6 @@
     - { role: shibboleth-idp, tags: ["shibboleth-idp"] }
     - { role: httpd, tags: ["httpd"] }
     - { role: shibboleth-sp, tags: ["shibboleth-sp"] }
-    - { role: openldap, tags: ["oepnldap"] }
+    - { role: openldap, tags: ["openldap"] }
     - { role: totp-authenticator, tags: ["totp-authenticator"] }
     - { role: posttasks, tags: ["posttasks"] }
