@@ -70,6 +70,9 @@ You can use following users to test this setup:
 
 Google Authenticator flow can be tested with URL: https://vagrant.local/Shibboleth.sso/totp  
 Google Authenticator seed = G24YUKCHHXRDWCPR  
+QR-code:  
+![alt text](https://kvak.net/totp_code_qr.png "Logo Title Text 1")
+
 
 After authentication you will be redirected back to https://vagrant.local/secure/. There is asimple PHP site which will show your environment variables and http headers.
 
