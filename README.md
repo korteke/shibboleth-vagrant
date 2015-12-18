@@ -65,13 +65,15 @@ You can use following users to test this setup:
 * johnd / Password1
 * janed / Password1  
 
-Google Authenticator flow can be tested with URL: https://vagrant.local/Shibboleth.sso/totp  
-Google Authenticator seed = G24YUKCHHXRDWCPR  
+Google Authenticator flow can be tested with URL: https://vagrant.local/Shibboleth.sso/totp  or https://vagrant.local/Shibboleth.sso/totp?target=/secure  
+Latter URL will redirect you to the so simple PHP-site where you can see your attributes & headers.
+
+Google Authenticator seed  for "johnd" = G24YUKCHHXRDWCPR  
 QR-code:  
 ![alt text](https://kvak.net/totp_code_qr.png "Logo Title Text 1")
 
 
-After authentication you will be redirected back to https://vagrant.local/secure/. There is asimple PHP site which will show your environment variables and http headers.
+After authentication you will be redirected back to https://vagrant.local/secure/. There is a simple PHP site which will show your environment variables and http headers.
 
 # Manage
 You can use phpLdapAdmin application to manage users that are allowed to authenticate. It can be found https://vagrant.local/ldapadmin. Authenticate with user: "cn=manager,dc=vagrant,dc=local" password: "Password1"
