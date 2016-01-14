@@ -3,7 +3,7 @@ shib_idp_version: 3.2.0
 shib_home: /opt/shibboleth-idp/
 java_version: 1.8.0_45
 tomcat_version: 8.0.30
-totp_version: 0.5.0
+totp_version: 0.5.1
 ldap_url: "ldap://localhost:389"
 ldap_base_dn: ou=People,dc=vagrant,dc=local
 ldap_manager: cn=manager,dc=vagrant,dc=local
