@@ -1,5 +1,5 @@
 - hosts: all
-  sudo: true
+  become: yes
 
   vars_files:
    - vars/default.yml
