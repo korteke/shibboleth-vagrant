@@ -1,7 +1,7 @@
 idp.noprompt="true"
 idp.host.name=vagrant.local
-idp.src.dir=/opt/shibboleth-identity-provider-{{ shib_idp_version }}/
-idp.target.dir=/opt/shibboleth-idp/
-idp.merge.properties=/opt/shibboleth-identity-provider-{{ shib_idp_version }}/bin/idp.properties
+idp.src.dir={{ shib_installdir }}shibboleth-identity-provider-{{ shib_idp_version }}/
+idp.target.dir={{ shib_installdir }}/shibboleth-idp/
+idp.merge.properties={{ shib_installdir }}/shibboleth-identity-provider-{{ shib_idp_version }}/bin/idp.properties
 idp.keystore.password=secret1
 idp.sealer.password=secret1
