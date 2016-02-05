@@ -1,37 +1,37 @@
 ---
 
   - name: Create tomcat group
-    group: name=tomcat state=present gid=1000
+    group: name={{ tomcat_unixgroup }} state=present gid={{ tomcat_unixgid }}
 
   - name: Create tomcat user
-    user: name=tomcat comment="tomcat" uid=1000 group=tomcat state=present
+    user: name={{ tomcat_unixuser }} comment="tomcat" uid={{ tomcat_unixuid }} group={{ tomcat_unixgroup }} state=present
 
   - name: Download tomcat
     get_url: url=http://archive.apache.org/dist/tomcat/tomcat-8/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
-             dest=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz
+             dest={{ download_dir }}/apache-tomcat-{{ tomcat_version }}.tar.gz
 
   - name: Extract tomcat
-    unarchive: src=/opt/download/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt/ copy=no
+    unarchive: src={{ download_dir }}/apache-tomcat-{{ tomcat_version }}.tar.gz dest={{ tomcat_installdir }}/ copy=no
 
   - name: Extract java
-    unarchive: src=/opt/download/jdk-8u45-linux-x64.tar.gz dest=/opt/ copy=no
+    unarchive: src={{ download_dir }}/jdk-8u45-linux-x64.tar.gz dest={{ java_installdir }} copy=no
 
   - name: Create java symlink
-    file: path=/opt/java
-          src=/opt/jdk{{ java_version}}
-          state=link 
+    file: path={{ java_installdir }}/java
+          src={{ java_installdir }}/jdk{{ java_version}}
+          state=link
           force=yes
 
   - name: Extract JCE
-    command: 'unzip -oj /opt/download/jce_policy-8.zip -d /opt/jdk{{ java_version }}/jre/lib/security/'
+    command: 'unzip -oj {{ download_dir }}/jce_policy-8.zip -d {{ java_installdir }}/jdk{{ java_version }}/jre/lib/security/'
 
   - name: Copy Tomcats server.xml
     template: src=server.xml.j2
-              dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/server.xml
+              dest={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/conf/server.xml
 
   - name: Tomcat Init script
     template: src=tomcat.j2
-              dest=/etc/init.d/tomcat owner=root group=root mode=0755
+              dest=/etc/init.d/{{ tomcat_servicename }} owner=root group=root mode=0755
 
   - name: Enable service tomcat
-    service: name=tomcat enabled=yes state=started
+    service: name={{ tomcat_servicename }} enabled=yes state=started

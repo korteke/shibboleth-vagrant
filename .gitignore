@@ -30,3 +30,7 @@ doc/
 
 # project
 downloads/*
+
+# Sublime projects
+*.sublime-workspace
+*.sublime-project
