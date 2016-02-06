@@ -3,6 +3,9 @@
       get_url: url=http://shibboleth.net/downloads/identity-provider/{{ shib_idp_version }}/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
                dest={{ download_dir }}/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz
 
+    - name: Create base directory for shibboleth idp
+      file: state=directory path={{ shib_installdir }}
+
     - name: Extract shibboleth
       unarchive: src={{ download_dir }}/shibboleth-identity-provider-{{ shib_idp_version }}.tar.gz dest={{ shib_installdir }} copy=no
 
@@ -45,4 +48,8 @@
       copy: src={{ item }} dest="{{ shib_installdir }}/shibboleth-idp/conf/"
       with_fileglob:
         - conf/*
+      notify: restart tomcat
+
+    - name: Configure metadata-providers
+      template: src=metadata-providers.xml.j2 dest="{{ shib_installdir}}/shibboleth-idp/conf/metadata-providers.xml"
       notify: restart tomcat

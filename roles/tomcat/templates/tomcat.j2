@@ -25,6 +25,9 @@ export CATALINA_HOME={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
 export CATALINA_BASE={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/
+
+#CATALINA_OPTS to include IdP homedir
+export CATALINA_OPTS=-Didp.home={{ shib_installdir }}/shibboleth-idp
  
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER={{ tomcat_unixuser }}
