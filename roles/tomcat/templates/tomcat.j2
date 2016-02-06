@@ -15,19 +15,19 @@
 #
  
 #Location of JAVA_HOME (bin files)
-export JAVA_HOME=/opt/java
+export JAVA_HOME={{ java_installdir }}/java
  
 #Add Java binary files to PATH
 export PATH=$JAVA_HOME/bin:$PATH
  
 #CATALINA_HOME is the location of the bin files of Tomcat  
-export CATALINA_HOME=/opt/apache-tomcat-{{ tomcat_version }}/
+export CATALINA_HOME={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
-export CATALINA_BASE=/opt/apache-tomcat-{{ tomcat_version }}/
+export CATALINA_BASE={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/
  
 #TOMCAT_USER is the default user of tomcat
-export TOMCAT_USER=tomcat
+export TOMCAT_USER={{ tomcat_unixuser }}
  
 #TOMCAT_USAGE is the message if this script is called without any options
 TOMCAT_USAGE="Usage: $0 {\e[00;32mstart\e[00m|\e[00;31mstop\e[00m|\e[00;32mstatus\e[00m|\e[00;31mrestart\e[00m}"

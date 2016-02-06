@@ -11,7 +11,7 @@
       service: name=slapd enabled=yes state=started
 
     - name: Copy OpenLDAP ldif
-      copy: src={{ item }} dest="/opt/download"
+      copy: src={{ item }} dest="{{ download_dir }}"
       with_fileglob:
         - ldif/*
       notify: restart openldap
@@ -19,8 +19,8 @@
     - name: Configure OpenLDAP + add base ldifs
       command: "{{ item }}"
       with_items:
-      - ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f /opt/download/config.ldif
-      - ldapadd -x -w Password1 -D cn=manager,dc=vagrant,dc=local -H ldapi:/// -f /opt/download/base.ldif
+      - ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f {{ download_dir }}/config.ldif
+      - ldapadd -x -w Password1 -D cn=manager,dc=vagrant,dc=local -H ldapi:/// -f {{ download_dir }}/base.ldif
       notify: restart openldap
 
     - name: Copy phpLdapAdmin config

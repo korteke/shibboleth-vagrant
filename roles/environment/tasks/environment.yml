@@ -20,6 +20,7 @@
       command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip -O {{ download_dir }}/jce_policy-8.zip'
 
     - name: Create profile.d files
-      copy: src={{ item }} dest="/etc/profile.d"
-      with_fileglob:
-        - profile.d/*
+      template: src=profile.d/{{ item.src }} dest=/etc/profile.d/{{ item.dest }}
+      with_items:
+        - { src: 'java.sh.j2', dest: 'java.sh' }
+        - { src: 'maven.sh.j2', dest: 'maven.sh' }
