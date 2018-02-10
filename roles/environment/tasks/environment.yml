@@ -17,7 +17,7 @@
       command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jdk_archive_url }} -O {{ download_dir }}/{{ jdk_archive }}'
 
     - name: Download JCE
-      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip -O {{ download_dir }}/jce_policy-8.zip'
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jce_archive_url }} -O {{ download_dir }}/{{ jce_archive }}'
 
     - name: Create profile.d files
       template: src=profile.d/{{ item.src }} dest=/etc/profile.d/{{ item.dest }}
