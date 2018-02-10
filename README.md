@@ -9,7 +9,7 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 ## This Vagrant box includes following packages / applications:
 * CentOS 6.4
 * httpd 2.2
-* Oracle Java 8
+* Oracle Java 8 (Update 172)
 * Tomcat 8.0.30
 * Shibboleth Service Provider (SP) 2.5.x
 * Shibboleth Identity Provider (IdP) 3.2.0
@@ -83,6 +83,6 @@ You can use phpLdapAdmin application to manage users that are allowed to authent
 * Shibboleth IdP - /opt/shibboleth-idp
 * Shibboleth SP - /etc/shibboleth
 * Apache httpd - /etc/httpd
-* Java - /opt/jdk1.8.0_45/
+* Java - /opt/jdk1.8.0_172/
 * Tomcat - /opt/apache-tomcat-8.0.30
 * OpenLDAP - /etc/openldap

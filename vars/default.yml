@@ -10,7 +10,9 @@ shib_idp_version: 3.2.0
 shib_installdir: /opt
 shib_home: "{{ shib_installdir }}/shibboleth-idp/"
 java_installdir: /opt
-java_version: 1.8.0_45
+jdk_archive: jdk-8u172-linux-x64.tar.gz
+jdk_archive_url: "http://download.oracle.com/otn-pub/java/jdk/8u172-b11/a58eab1ec242421181065cdc37240b08/{{ jdk_archive }}"
+jdk_directory: jdk1.8.0_172
 maven_installdir: /opt
 tomcat_version: 8.0.30
 totp_installdir: /opt
