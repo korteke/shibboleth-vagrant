@@ -9,5 +9,11 @@
       file: path=/etc/httpd/conf.d/ssl.conf state=absent
       notify: restart httpd
 
+    - name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
+      seboolean:
+        name: httpd_can_network_connect
+        state: yes
+        persistent: yes
+    
     - name: Enable service httpd
       service: name=httpd enabled=yes state=started

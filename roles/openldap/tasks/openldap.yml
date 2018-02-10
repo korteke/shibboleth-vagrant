@@ -1,4 +1,7 @@
 ---
+    - name: Enable EPEL repository
+      yum: pkg=epel-release state=present
+
     - name: Install openldap
       yum: pkg={{item}} state=installed
       with_items:
@@ -19,6 +22,9 @@
     - name: Configure OpenLDAP + add base ldifs
       command: "{{ item }}"
       with_items:
+      - ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+      - ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+      - ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
       - ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f {{ download_dir }}/config.ldif
       - ldapadd -x -w Password1 -D cn=manager,dc=vagrant,dc=local -H ldapi:/// -f {{ download_dir }}/base.ldif
       notify: restart openldap

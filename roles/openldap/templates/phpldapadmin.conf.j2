@@ -6,6 +6,8 @@ Alias /phpldapadmin /usr/share/phpldapadmin/htdocs
 Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 
 <Directory /usr/share/phpldapadmin/htdocs>
-  Order Deny,Allow
+  Options Indexes FollowSymLinks MultiViews
+  DirectoryIndex index.php
+  AllowOverride all
+  Require all granted
 </Directory>
-

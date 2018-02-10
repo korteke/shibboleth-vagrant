@@ -1,11 +1,14 @@
 ---
-    - name: Install apache, mod_ssl, wget, vim
+    - name: Install apache, mod_ssl, wget, vim, git, unzip, libsemanage (Python)
       yum: pkg={{ item }} state=present
       with_items:
       - vim-enhanced
       - httpd
       - mod_ssl
       - wget
+      - unzip
+      - git
+      - libsemanage-python
 
     - name: Create download directory
       file: path={{ download_dir }} state=directory

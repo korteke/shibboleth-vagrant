@@ -1,9 +1,9 @@
 ---
 download_dir: /opt/download
 tomcat_unixgroup: tomcat
-tomcat_unixgid: 1000
+tomcat_unixgid: 1002
 tomcat_unixuser: tomcat
-tomcat_unixuid: 1000
+tomcat_unixuid: 1002
 tomcat_installdir: /opt
 tomcat_servicename: tomcat
 shib_idp_version: 3.2.0

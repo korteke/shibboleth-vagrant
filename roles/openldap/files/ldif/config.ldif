@@ -1,14 +1,14 @@
-dn: olcDatabase={2}bdb,cn=config
+dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcSuffix
 olcSuffix: dc=vagrant,dc=local
 
-dn: olcDatabase={2}bdb,cn=config
+dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootDN
 olcRootDN: cn=manager,dc=vagrant,dc=local
 
-dn: olcDatabase={2}bdb,cn=config
+dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootPW
 olcRootPW: {SSHA}fUBPILzE56GL1mFgAZwKKTnc+9MekjWf

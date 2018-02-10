@@ -7,11 +7,11 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 * Virtualbox (or other vagrant compliant virtualization "engine")
 
 ## This Vagrant box includes following packages / applications:
-* CentOS 6.4
-* httpd 2.2
+* CentOS 7
+* httpd 2.4.x
 * Oracle Java 8 (Update 172)
 * Tomcat 8.5.32
-* Shibboleth Service Provider (SP) 2.5.x
+* Shibboleth Service Provider (SP) 2.6.x
 * Shibboleth Identity Provider (IdP) 3.2.0
 * OpenLDAP
 * phpLdapAdmin
@@ -56,7 +56,7 @@ You need to add Vagrant box ip address to the hosts-file (linux /etc/hosts, wind
 
 ```
 PLAY RECAP ********************************************************************
-default                    : ok=50   changed=48   unreachable=0    failed=0
+default                    : ok=67   changed=62   unreachable=0    failed=0
 ```
 
 Open browser and navigate to the address "https://vagrant.local/secure/" this URL is secured with Shibboleth SP, so that will redirect you to the Shibboleth IdP where you need to authenticate.
