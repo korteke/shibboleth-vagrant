@@ -16,6 +16,7 @@ jdk_directory: jdk1.8.0_172
 jce_archive: jce_policy-8.zip
 jce_archive_url: "http://download.oracle.com/otn-pub/java/jce/8/{{ jce_archive }}"
 maven_installdir: /opt
+maven_version: 3.5.4
 tomcat_version: 8.0.30
 totp_installdir: /opt
 totp_version: 0.5.1
