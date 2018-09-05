@@ -14,7 +14,7 @@
     unarchive: src={{ download_dir }}/apache-tomcat-{{ tomcat_version }}.tar.gz dest={{ tomcat_installdir }}/ copy=no
 
   - name: Extract java
-    unarchive: src={{ download_dir }}/jdk-8u45-linux-x64.tar.gz dest={{ java_installdir }} copy=no
+    unarchive: src={{ download_dir }}/jdk-8u181-linux-x64.tar.gz dest={{ java_installdir }} copy=no
 
   - name: Create java symlink
     file: path={{ java_installdir }}/java

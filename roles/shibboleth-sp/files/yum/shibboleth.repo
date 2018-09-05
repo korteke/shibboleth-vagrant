@@ -5,3 +5,4 @@ baseurl=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_Ce
 gpgcheck=1
 gpgkey=http://download.opensuse.org/repositories/security:/shibboleth/CentOS_CentOS-6/repodata/repomd.xml.key
 enabled=1
+sslverify=0
