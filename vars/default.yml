@@ -6,13 +6,13 @@ tomcat_unixuser: tomcat
 tomcat_unixuid: 1000
 tomcat_installdir: /opt
 tomcat_servicename: tomcat
-shib_idp_version: 3.2.0
+shib_idp_version: 3.3.3
 shib_installdir: /opt
 shib_home: "{{ shib_installdir }}/shibboleth-idp/"
 java_installdir: /opt
-java_version: 1.8.0_45
+java_version: 1.8.0_181
 maven_installdir: /opt
-tomcat_version: 8.0.30
+tomcat_version: 8.0.53
 totp_installdir: /opt
 totp_version: 0.5.1
 ldap_url: "ldap://localhost:389"
