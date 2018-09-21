@@ -10,6 +10,11 @@
       - git
       - libsemanage-python
 
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
     - name: Create download directory
       file: path={{ download_dir }} state=directory
 

@@ -6,7 +6,7 @@ tomcat_unixuser: tomcat
 tomcat_unixuid: 1002
 tomcat_installdir: /opt
 tomcat_servicename: tomcat
-shib_idp_version: 3.2.0
+shib_idp_version: 3.3.3
 shib_installdir: /opt
 shib_home: "{{ shib_installdir }}/shibboleth-idp/"
 java_installdir: /opt
