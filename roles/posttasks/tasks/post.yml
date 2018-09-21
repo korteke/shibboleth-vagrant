@@ -7,5 +7,5 @@
     recurse: yes
   with_items:
     - "{{ shib_installdir }}/shibboleth-idp"
-    - "{{ java_installdir }}/jdk{{ java_version }}"
+    - "{{ java_installdir }}/{{ jdk_directory }}"
     - "{{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}"

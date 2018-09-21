@@ -1,9 +1,9 @@
 ---
   - name: Download maven
-    get_url: url=http://archive.apache.org/dist/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz dest={{ download_dir }}/apache-maven-3.0.5-bin.tar.gz
+    get_url: url=http://archive.apache.org/dist/maven/maven-3/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz dest={{ download_dir }}/apache-maven-{{ maven_version }}-bin.tar.gz
 
   - name: Extract maven
-    unarchive: src={{ download_dir }}/apache-maven-3.0.5-bin.tar.gz dest={{ maven_installdir }}/ copy=no 
+    unarchive: src={{ download_dir }}/apache-maven-{{ maven_version }}-bin.tar.gz dest={{ maven_installdir }}/ copy=no
 
   - name: Create directory for Shibboleth-IdP3-TOTP-Auth
     file: path="{{ totp_installdir }}/totp-authenticator" state=directory mode=0755 owner=root group=root
@@ -12,7 +12,7 @@
     git: repo=https://github.com/korteke/Shibboleth-IdP3-TOTP-Auth.git dest={{ totp_installdir }}/totp-authenticator
 
   - name: Compile Totp-authenticator
-    shell: "{{ maven_installdir }}/apache-maven-3.0.5/bin/mvn clean package"
+    shell: "{{ maven_installdir }}/apache-maven-{{ maven_version }}/bin/mvn clean package"
     args:
       chdir: "{{ totp_installdir }}/totp-authenticator"
     environment:
@@ -22,11 +22,11 @@
     shell: "cp -R {{ totp_installdir }}/totp-authenticator/totpauth-impl/target/totpauth-impl-{{ totp_version }}-bin/totpauth-impl-{{ totp_version }}/* {{ shib_installdir }}/shibboleth-idp/"
 
   - name: Enable Totp
-    lineinfile: dest={{ shib_installdir }}/shibboleth-idp/conf/idp.properties regexp='^idp\.authn\.flows\= Password' line='idp.authn.flows= Password|Totp' 
+    lineinfile: dest={{ shib_installdir }}/shibboleth-idp/conf/idp.properties regexp='^idp\.authn\.flows\= Password' line='idp.authn.flows= Password|Totp'
 
   - name: Modify general-authn.xml file
     copy: src=general-authn.xml dest={{ shib_installdir }}/shibboleth-idp/conf/authn/general-authn.xml
-  
+
   - name: Modify totp-authn-beans.xml
     template: src=totp-authn-beans.xml.j2 dest={{ shib_installdir }}/shibboleth-idp/conf/authn/totp-authn-beans.xml
 
