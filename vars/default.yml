@@ -16,7 +16,7 @@ jdk_archive_url: "https://cdn.azul.com/zulu/bin/{{ jdk_archive }}"
 jdk_directory: zulu8.31.0.1-jdk8.0.181-linux_x64
 maven_installdir: /opt
 maven_version: 3.5.4
-tomcat_version: 8.5.32
+tomcat_version: 8.5.34
 totp_installdir: /opt
 totp_version: 0.5.1
 ldap_url: "ldap://localhost:389"

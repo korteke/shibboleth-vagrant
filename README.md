@@ -10,7 +10,7 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 * CentOS 7
 * httpd 2.4.x
 * (Azul) OpenJDK 8 (Update 181)
-* Tomcat 8.5.32
+* Tomcat 8.5.34
 * Shibboleth Service Provider (SP) 2.6.x
 * Shibboleth Identity Provider (IdP) 3.2.0
 * OpenLDAP
@@ -84,5 +84,5 @@ You can use phpLdapAdmin application to manage users that are allowed to authent
 * Shibboleth SP - /etc/shibboleth
 * Apache httpd - /etc/httpd
 * Java - /opt/zulu8.31.0.1-jdk8.0.181-linux_x64
-* Tomcat - /opt/apache-tomcat-8.5.32
+* Tomcat - /opt/apache-tomcat-8.5.34
 * OpenLDAP - /etc/openldap
