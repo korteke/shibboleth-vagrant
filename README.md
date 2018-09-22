@@ -1,5 +1,5 @@
 # Shibboleth-vagrant
-Vagrant box - Shibboleth IdP3 + SP 2.x testing environment
+Vagrant box - Shibboleth IdP3 + SP 3.x testing environment
 
 Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any attributes to the SP.~~ IdP will release couple of attributes to the Shibboleth SP (uid, mail, sn, cn, givenName)
 
@@ -11,8 +11,8 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 * httpd 2.4.x
 * (Azul) OpenJDK 8 (Update 181)
 * Tomcat 8.5.34
-* Shibboleth Service Provider (SP) 2.6.x
-* Shibboleth Identity Provider (IdP) 3.2.0
+* Shibboleth Service Provider (SP) 3.0.2
+* Shibboleth Identity Provider (IdP) 3.3.3
 * OpenLDAP
 * phpLdapAdmin
 
