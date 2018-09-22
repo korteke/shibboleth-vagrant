@@ -21,11 +21,11 @@
     - name: Create secure directory
       file: path=/var/www/html/secure state=directory
 
-    - name: Download java
-      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jdk_archive_url }} -O {{ download_dir }}/{{ jdk_archive }}'
-
-    - name: Download JCE
-      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jce_archive_url }} -O {{ download_dir }}/{{ jce_archive }}'
+    - name: Download OpenJDK
+      get_url:
+        url: "{{ jdk_archive_url }}"
+        dest: "{{ download_dir }}/{{ jdk_archive }}"
+        checksum: "{{ jdk_archive_checksum }}"
 
     - name: Create profile.d files
       template: src=profile.d/{{ item.src }} dest=/etc/profile.d/{{ item.dest }}
