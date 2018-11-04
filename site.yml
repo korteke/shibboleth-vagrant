@@ -1,2 +1,2 @@
 ---
-- include: shibboleth-vagrant.yml
+- import_playbook: shibboleth-vagrant.yml

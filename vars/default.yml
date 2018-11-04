@@ -10,14 +10,13 @@ shib_idp_version: 3.3.3
 shib_installdir: /opt
 shib_home: "{{ shib_installdir }}/shibboleth-idp/"
 java_installdir: /opt
-jdk_archive: jdk-8u172-linux-x64.tar.gz
-jdk_archive_url: "http://download.oracle.com/otn-pub/java/jdk/8u172-b11/a58eab1ec242421181065cdc37240b08/{{ jdk_archive }}"
-jdk_directory: jdk1.8.0_172
-jce_archive: jce_policy-8.zip
-jce_archive_url: "http://download.oracle.com/otn-pub/java/jce/8/{{ jce_archive }}"
+jdk_archive: zulu8.31.0.1-jdk8.0.181-linux_x64.tar.gz
+jdk_archive_checksum: md5:64270772bfaaced5611d754cd022c32e
+jdk_archive_url: "https://cdn.azul.com/zulu/bin/{{ jdk_archive }}"
+jdk_directory: zulu8.31.0.1-jdk8.0.181-linux_x64
 maven_installdir: /opt
 maven_version: 3.5.4
-tomcat_version: 8.5.32
+tomcat_version: 8.5.34
 totp_installdir: /opt
 totp_version: 0.5.1
 ldap_url: "ldap://localhost:389"

@@ -22,9 +22,6 @@
           state=link
           force=yes
 
-  - name: Extract JCE
-    command: 'unzip -oj {{ download_dir }}/{{ jce_archive }} -d {{ java_installdir }}/{{ jdk_directory }}/jre/lib/security/'
-
   - name: Copy Tomcats server.xml
     template: src=server.xml.j2
               dest={{ tomcat_installdir }}/apache-tomcat-{{ tomcat_version }}/conf/server.xml

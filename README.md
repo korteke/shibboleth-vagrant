@@ -1,5 +1,5 @@
 # Shibboleth-vagrant
-Vagrant box - Shibboleth IdP3 + SP 2.x testing environment
+Vagrant box - Shibboleth IdP3 + SP 3.x testing environment
 
 Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any attributes to the SP.~~ IdP will release couple of attributes to the Shibboleth SP (uid, mail, sn, cn, givenName)
 
@@ -9,10 +9,10 @@ Shibboleth SP / IdP are almost on factory settings. ~~So IdP wont release any at
 ## This Vagrant box includes following packages / applications:
 * CentOS 7
 * httpd 2.4.x
-* Oracle Java 8 (Update 172)
-* Tomcat 8.5.32
-* Shibboleth Service Provider (SP) 2.6.x
-* Shibboleth Identity Provider (IdP) 3.2.0
+* (Azul) OpenJDK 8 (Update 181)
+* Tomcat 8.5.34
+* Shibboleth Service Provider (SP) 3.0.2
+* Shibboleth Identity Provider (IdP) 3.3.3
 * OpenLDAP
 * phpLdapAdmin
 
@@ -56,7 +56,7 @@ You need to add Vagrant box ip address to the hosts-file (linux /etc/hosts, wind
 
 ```
 PLAY RECAP ********************************************************************
-default                    : ok=67   changed=62   unreachable=0    failed=0
+default                    : ok=66   changed=61   unreachable=0    failed=0
 ```
 
 Open browser and navigate to the address "https://vagrant.local/secure/" this URL is secured with Shibboleth SP, so that will redirect you to the Shibboleth IdP where you need to authenticate.
@@ -83,6 +83,6 @@ You can use phpLdapAdmin application to manage users that are allowed to authent
 * Shibboleth IdP - /opt/shibboleth-idp
 * Shibboleth SP - /etc/shibboleth
 * Apache httpd - /etc/httpd
-* Java - /opt/jdk1.8.0_172/
-* Tomcat - /opt/apache-tomcat-8.5.32
+* Java - /opt/zulu8.31.0.1-jdk8.0.181-linux_x64
+* Tomcat - /opt/apache-tomcat-8.5.34
 * OpenLDAP - /etc/openldap
